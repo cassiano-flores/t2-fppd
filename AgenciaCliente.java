@@ -14,54 +14,60 @@ public class AgenciaCliente {
             //Procura pelo servico da calculadora no IP e porta definidos
             InterSolicitacoes solicitar = (InterSolicitacoes) Naming.lookup("rmi://localhost:1099/BankService");
    
-            System.out.println("1 - abrir conta");
-            System.out.println("2 - fechar conta");
-            System.out.println("3 - autenticar conta");
-            System.out.println("4 - deposito");
-            System.out.println("5 - saque");
-            System.out.println("6 - consultar saldo");
-            System.out.println("0 - sair");
             boolean exec = true;
-            double result;
             int idConta;
             double valor;
             while (exec) {
 
+                System.out.println("1 - abrir conta");
+                System.out.println("2 - fechar conta");
+                System.out.println("3 - autenticar conta");
+                System.out.println("4 - deposito");
+                System.out.println("5 - saque");
+                System.out.println("6 - consultar saldo");
+                System.out.println("0 - sair");
+
                 int key = in.nextInt();
                 switch (key) {
                     case 1:
-                        solicitar.aberturaDeConta();
+                        System.out.println(solicitar.aberturaDeConta());
                         break;
                     case 2:
                         System.out.printf("Digite o numero da conta\n");
                         idConta = in.nextInt();
-                        solicitar.fechamentoDeConta(idConta);
+                        System.out.println(solicitar.fechamentoDeConta(idConta));
                         break;
                     case 3:
                         System.out.printf("Digite o numero da conta\n");
                         idConta = in.nextInt();
-                        solicitar.autenticaçãoDeConta(idConta);
+                        System.out.println(solicitar.autenticaçãoDeConta(idConta)); 
                         break;
                     case 4:
+                        System.out.printf("Digite o numero da conta\n");
+                        idConta = in.nextInt();
                         System.out.printf("Digite o valor R$:\n");
                         valor = in.nextDouble();
-                        solicitar.deposito(valor);
+                        System.out.println(solicitar.deposito(idConta, valor));
                         break;
                     case 5:
+                        System.out.printf("Digite o numero da conta\n");
+                        idConta = in.nextInt();
                         System.out.printf("Digite o valor R$:\n");
                         valor = in.nextDouble();
-                        solicitar.retirada(valor);
+                        System.out.println(solicitar.retirada(idConta, valor));
                         break;
                     case 6:
                         System.out.printf("Digite o numero da conta:\n");
                         idConta = in.nextInt();
-                        solicitar.consultaSaldo(idConta);
+                        System.out.println(solicitar.consultaSaldo(idConta));
                         break;
                     case 0:
                         exec = false;
                     default:
                         break;
                 }
+
+                in.nextLine();
             }
         } catch (Exception e) {
             e.printStackTrace();
