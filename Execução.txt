@@ -2,5 +2,6 @@ Compilação:
 javac *.java
 
 Execução:
-Em um terminal execute o servidor: java CalculadoraServer
-Em outro terminal execute o cliente: java CalculadoraCliente
+Em um terminal execute o servidor:   java BankServer
+Em outro terminal execute o cliente: java AgenciaCliente
+Em outro terminal execute o cliente: java CaixaEletronicoCliente
