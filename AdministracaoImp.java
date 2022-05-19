@@ -4,6 +4,7 @@
 
 import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject;
+
 import java.util.*;
 
 //UnicastRemoteObject permite que a implementacao da classe possa ser estabelecida como um servico remoto
@@ -51,5 +52,4 @@ public class AdministracaoImp extends UnicastRemoteObject implements InterSolici
         return null;
     }
 
-    
 }

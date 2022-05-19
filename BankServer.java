@@ -1,5 +1,5 @@
 /**
- *  Servidor calculadora
+ *  Servidor Bank
  */
 
 import java.rmi.Naming;
