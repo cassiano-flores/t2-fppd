@@ -4,7 +4,7 @@
 
 import java.rmi.*;
 
-public interface Calculadora extends Remote {
+public interface Administracao extends Remote {
     public Double soma (double x, double y) throws RemoteException;
     public Double sub (double x, double y) throws RemoteException;
     public Double mult (double x, double y) throws RemoteException;
