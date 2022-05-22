@@ -10,10 +10,12 @@ public class AgenciaCliente {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
+        String tran = "AG@";
+        int cod = 0;
         try {
             //Procura pelo servico da calculadora no IP e porta definidos
             InterSolicitacoes solicitar = (InterSolicitacoes) Naming.lookup("rmi://localhost:1099/BankService");
-   
+            
             boolean exec = true;
             int idConta;
             double valor;
@@ -30,7 +32,7 @@ public class AgenciaCliente {
                 int key = in.nextInt();
                 switch (key) {
                     case 1:
-                        System.out.println(solicitar.aberturaDeConta());
+                        System.out.println(solicitar.aberturaDeConta(tran+(cod++)));
                         break;
                     case 2:
                         System.out.printf("Digite o numero da conta\n");
@@ -47,14 +49,14 @@ public class AgenciaCliente {
                         idConta = in.nextInt();
                         System.out.printf("Digite o valor R$:\n");
                         valor = in.nextDouble();
-                        System.out.println(solicitar.deposito(idConta, valor));
+                        System.out.println(solicitar.deposito(idConta, valor, tran+(cod++)));
                         break;
                     case 5:
                         System.out.printf("Digite o numero da conta\n");
                         idConta = in.nextInt();
                         System.out.printf("Digite o valor R$:\n");
                         valor = in.nextDouble();
-                        System.out.println(solicitar.retirada(idConta, valor));
+                        System.out.println(solicitar.retirada(idConta, valor, tran+(cod++)));
                         break;
                     case 6:
                         System.out.printf("Digite o numero da conta:\n");

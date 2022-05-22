@@ -12,14 +12,21 @@ public class AdministracaoImp extends UnicastRemoteObject implements InterSolici
 
     private Map<Integer, Double> contas;
     private int idConta;
+    private List<String> bufferTransacoes;
 
     public AdministracaoImp() throws RemoteException{
         contas = new TreeMap<Integer,Double>();
         idConta = 0;
+        bufferTransacoes = new ArrayList<String>();
     }
 
     @Override
-    public String aberturaDeConta() throws RemoteException {
+    public String aberturaDeConta(String idTrancaocao) throws RemoteException {
+        if(bufferTransacoes.contains(idTrancaocao)){
+            return "\nConta aberta\n";
+        }
+
+        bufferTransacoes.add(idTrancaocao);
         contas.put(idConta++, 0.00);
         return "\nConta aberta\n";
     }
@@ -41,7 +48,12 @@ public class AdministracaoImp extends UnicastRemoteObject implements InterSolici
     }
 
     @Override
-    public String deposito(int id, double valor) throws RemoteException {
+    public String deposito(int id, double valor, String idTrancaocao) throws RemoteException {
+        if(bufferTransacoes.contains(idTrancaocao)){
+            return "\nDeposito realizado\n";
+        }
+
+        bufferTransacoes.add(idTrancaocao);
         double novovalor = contas.get(id)+valor;
         contas.remove(id);
         contas.put(id, novovalor);
@@ -49,7 +61,12 @@ public class AdministracaoImp extends UnicastRemoteObject implements InterSolici
     }
 
     @Override
-    public String retirada(int id, double valor) throws RemoteException {
+    public String retirada(int id, double valor, String idTrancaocao) throws RemoteException {
+        if(bufferTransacoes.contains(idTrancaocao)){
+            return "\nSaque realizado\n";
+        }
+
+        bufferTransacoes.add(idTrancaocao);
         double novovalor = contas.get(id)-valor;
         contas.remove(id);
         contas.put(id, novovalor);

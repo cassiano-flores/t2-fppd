@@ -10,6 +10,8 @@ public class CaixaEletronicoCliente {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
+        String tran = "CE@";
+        int cod = 0;
         try {
             //Procura pelo servico da calculadora no IP e porta definidos
             InterSolicitacoes solicitar = (InterSolicitacoes) Naming.lookup("rmi://localhost:1099/BankService");
@@ -22,6 +24,7 @@ public class CaixaEletronicoCliente {
                 System.out.println("1 - deposito");
                 System.out.println("2 - saque");
                 System.out.println("3 - consultar saldo");
+                System.out.println("4 - Simular erro");
                 System.out.println("0 - sair");
 
                 int key = in.nextInt();
@@ -31,19 +34,28 @@ public class CaixaEletronicoCliente {
                         idConta = in.nextInt();
                         System.out.printf("Digite o valor R$:\n");
                         valor = in.nextDouble();
-                        System.out.println(solicitar.deposito(idConta, valor));
+                        System.out.println(solicitar.deposito(idConta, valor, tran+(cod++)));
                         break;
                     case 2:
                         System.out.printf("Digite o numero da conta\n");
                         idConta = in.nextInt();
                         System.out.printf("Digite o valor R$:\n");
                         valor = in.nextDouble();
-                        System.out.println(solicitar.retirada(idConta, valor));
+                        System.out.println(solicitar.retirada(idConta, valor, tran+(cod++)));
                         break;
                     case 3:
                         System.out.printf("Digite o numero da conta:\n");
                         idConta = in.nextInt();
                         System.out.println(solicitar.consultaSaldo(idConta));
+                        break;
+                    case 4:
+                        System.out.printf("Digite o numero da conta\n");
+                        idConta = in.nextInt();
+                        System.out.printf("Digite o valor R$:\n");
+                        valor = in.nextDouble();
+                        System.out.printf("Transacao:\n");
+                        String t = in.next();
+                        solicitar.deposito(idConta, valor, t);
                         break;
                     case 0:
                         exec = false;
