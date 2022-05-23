@@ -13,7 +13,7 @@ public class AgenciaCliente {
         String tran = "AG@";
         int cod = 0;
         try {
-            //Procura pelo servico da calculadora no IP e porta definidos
+            //Procura pelo servico da interface InterSolicitacoes no IP e porta definidos
             InterSolicitacoes solicitar = (InterSolicitacoes) Naming.lookup("rmi://localhost:1099/BankService");
             
             boolean exec = true;

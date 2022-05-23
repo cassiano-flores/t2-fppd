@@ -13,7 +13,7 @@ public class CaixaEletronicoCliente {
         String tran = "CE@";
         int cod = 0;
         try {
-            //Procura pelo servico da calculadora no IP e porta definidos
+            //Procura pelo servico da InterSolicitacoes no IP e porta definidos
             InterSolicitacoes solicitar = (InterSolicitacoes) Naming.lookup("rmi://localhost:1099/BankService");
    
             boolean exec = true;

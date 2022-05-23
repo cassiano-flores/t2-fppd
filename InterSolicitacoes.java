@@ -1,5 +1,5 @@
 /**
-    Interface Calculadora com assinatura dos métodos 
+    Interface InterSolicitacoes com assinatura dos métodos 
  */
 
 import java.rmi.*;
