@@ -9,7 +9,6 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class BankServer {
     public BankServer(){
-        int id = 0;
         try {
             //Definicao do ip onde o servico ira funcionar
             System.setProperty("java.rmi.server.hostname", "localhost");

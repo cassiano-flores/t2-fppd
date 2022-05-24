@@ -51,7 +51,7 @@ public class CaixaEletronicoCliente {
                     case 4:
                         //Faz 3 requisições com o mesmo idTransação
                         //A primeira é aceita, as outras só confirmadas
-                        System.out.printf(solicitar.deposito(0, 50.00, "CE@100"));
+                        solicitar.deposito(0, 50.00, "CE@100");
                         System.out.printf(solicitar.deposito(0, 50.00, "CE@100"));
                         System.out.printf(solicitar.deposito(0, 50.00, "CE@100"));
                         break;
