@@ -49,13 +49,11 @@ public class CaixaEletronicoCliente {
                         System.out.println(solicitar.consultaSaldo(idConta));
                         break;
                     case 4:
-                        System.out.printf("Digite o numero da conta\n");
-                        idConta = in.nextInt();
-                        System.out.printf("Digite o valor R$:\n");
-                        valor = in.nextDouble();
-                        System.out.printf("Transacao:\n");
-                        String t = in.next();
-                        solicitar.deposito(idConta, valor, t);
+                        //Faz 3 requisições com o mesmo idTransação
+                        //A primeira é aceita, as outras só confirmadas
+                        System.out.printf(solicitar.deposito(0, 50.00, "CE@100"));
+                        System.out.printf(solicitar.deposito(0, 50.00, "CE@100"));
+                        System.out.printf(solicitar.deposito(0, 50.00, "CE@100"));
                         break;
                     case 0:
                         exec = false;

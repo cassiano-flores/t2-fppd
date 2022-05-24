@@ -23,7 +23,7 @@ public class AdministracaoImp extends UnicastRemoteObject implements InterSolici
     @Override
     public String aberturaDeConta(String idTrancaocao) throws RemoteException {
         if(bufferTransacoes.contains(idTrancaocao)){
-            return "\nConta aberta\n";
+            return "\nConta já existe\n";
         }
 
         bufferTransacoes.add(idTrancaocao);
@@ -33,8 +33,12 @@ public class AdministracaoImp extends UnicastRemoteObject implements InterSolici
 
     @Override
     public String fechamentoDeConta(int conta) throws RemoteException {
-        contas.remove(conta);
-        return "\nConta removida\n";
+        if(contas.containsKey(conta)){
+            contas.remove(conta);
+            return "\nConta removida\n";
+        }else{
+            return "\nConata não existe\n";
+        }
         
     }
 
@@ -50,20 +54,24 @@ public class AdministracaoImp extends UnicastRemoteObject implements InterSolici
     @Override
     public String deposito(int id, double valor, String idTrancaocao) throws RemoteException {
         if(bufferTransacoes.contains(idTrancaocao)){
-            return "\nDeposito realizado\n";
+            return "\nDeposito já foi realizado\n";
         }
 
-        bufferTransacoes.add(idTrancaocao);
-        double novovalor = contas.get(id)+valor;
-        contas.remove(id);
-        contas.put(id, novovalor);
-        return "\nDeposito realizado\n";
+        if(contas.containsKey(id)){
+            bufferTransacoes.add(idTrancaocao);
+            double novovalor = contas.get(id)+valor;
+            contas.remove(id);
+            contas.put(id, novovalor);
+            return "\nDeposito realizado\n";
+        }else{
+            return "\nConata não existe\n";
+        }
     }
 
     @Override
     public String retirada(int id, double valor, String idTrancaocao) throws RemoteException {
         if(bufferTransacoes.contains(idTrancaocao)){
-            return "\nSaque realizado\n";
+            return "\nSaque já foi realizado\n";
         }
 
         bufferTransacoes.add(idTrancaocao);
@@ -75,7 +83,11 @@ public class AdministracaoImp extends UnicastRemoteObject implements InterSolici
 
     @Override
     public String consultaSaldo(int conta) throws RemoteException {
-        return "\nSaldo: " + contas.get(conta) + "\n";
+        if(contas.containsKey(conta)){
+         return "\nSaldo: " + contas.get(conta) + "\n";
+        }else{
+            return "\nConata não existe\n";
+        }
     }
 
 }
