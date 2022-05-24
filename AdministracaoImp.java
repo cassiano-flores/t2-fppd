@@ -37,7 +37,7 @@ public class AdministracaoImp extends UnicastRemoteObject implements InterSolici
             contas.remove(conta);
             return "\nConta removida\n";
         }else{
-            return "\nConata não existe\n";
+            return "\nConta não existe\n";
         }
         
     }
@@ -47,7 +47,7 @@ public class AdministracaoImp extends UnicastRemoteObject implements InterSolici
         if(contas.containsKey(conta)){
             return "\nConta validada\n";
         }else{
-            return "\nConata não existe\n";
+            return "\nConta não existe\n";
         }
     }
 
@@ -64,7 +64,7 @@ public class AdministracaoImp extends UnicastRemoteObject implements InterSolici
             contas.put(id, novovalor);
             return "\nDeposito realizado\n";
         }else{
-            return "\nConata não existe\n";
+            return "\nConta não existe\n";
         }
     }
 
@@ -73,12 +73,15 @@ public class AdministracaoImp extends UnicastRemoteObject implements InterSolici
         if(bufferTransacoes.contains(idTrancaocao)){
             return "\nSaque já foi realizado\n";
         }
-
-        bufferTransacoes.add(idTrancaocao);
-        double novovalor = contas.get(id)-valor;
-        contas.remove(id);
-        contas.put(id, novovalor);
-        return "\nSaque realizado\n";
+        if(contas.containsKey(id)){
+            bufferTransacoes.add(idTrancaocao);
+            double novovalor = contas.get(id)-valor;
+            contas.remove(id);
+            contas.put(id, novovalor);
+            return "\nSaque realizado\n";
+        }else{
+            return "\nConta não existe\n";
+        }
     }
 
     @Override
@@ -86,7 +89,7 @@ public class AdministracaoImp extends UnicastRemoteObject implements InterSolici
         if(contas.containsKey(conta)){
          return "\nSaldo: " + contas.get(conta) + "\n";
         }else{
-            return "\nConata não existe\n";
+            return "\nConta não existe\n";
         }
     }
 
